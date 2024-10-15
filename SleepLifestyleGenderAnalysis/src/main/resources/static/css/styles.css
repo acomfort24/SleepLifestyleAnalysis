@@ -1,0 +1,237 @@
+/* Styles for resizing images */
+.full-width {
+    width: 100%;
+    height: auto; /* This will maintain the aspect ratio */
+}
+
+.half-width {
+    width: 50%;
+    height: auto;
+}
+
+.explicit-size {
+    width: 200px;
+    height: auto;
+}
+
+.thumbnail {
+    width: 100px;
+    height: auto;
+}
+
+.rounded-image {
+    border-radius: 10px; /* Adjust this value to increase or decrease the rounding */
+}
+
+/* Styles for text and frame */
+
+body {
+    background-color: #2e2e2e;
+    font-family: Arial, sans-serif;
+    color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #1b1b1b;
+    margin-bottom: 20px;
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+/* Global Styles */
+
+body {
+    background-color: #1e1e1e;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #ffa500;  /* Using an orange color for titles for contrast */
+}
+
+a {
+    color: #ffa500;  /* Using an orange color for links for visibility */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+/* Navbar styles */
+
+nav {
+    background-color: #2a2a2a;
+    padding: 15px 0;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav ul {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav ul li a {
+    white-space: nowrap;
+}
+
+
+nav ul li:hover {
+    background-color: #1e1e1e;
+}
+
+/* Main Content Styles */
+
+section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #2a2a2a;
+    border-radius: 5px;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+p, li {
+    line-height: 1.6;
+}
+
+/* Table styles */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background-color: #333333;
+}
+
+th, td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #3a3a3a;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Filter styles */
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+select {
+    padding: 5px 10px;
+    background-color: #333333;
+    color: #f2f2f2;
+    border: none;
+    border-radius: 4px;
+}
+
+.data-source {
+    margin-top: 20px;
+    font-size: 0.85em;
+    color: #666;
+}
+
+.sleep-health-lifestyle-dataset {
+    padding-left: 20px; /* Adjust the value as per your requirements */
+}
+
+button {
+    align-items: center;
+    padding: 6px 14px;
+    margin-left: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+    border-radius: 6px;
+    border: none;
+    background: #333333;
+    color: #f2f2f2;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+button:focus {
+    box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 1.8px #ffa500;
+    outline: 0;
+}
+
+/* Other styles retained from the original code */
+
+.full-width, .half-width, .explicit-size, .thumbnail, .rounded-image {
+    /* As provided previously */
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #1b1b1b;
+    margin-bottom: 20px;
+}
+
+.thumbnail {
+    max-width: 100px;
+    margin: 0 auto;
+    display: block;
+}
+
+section > div {
+    margin-bottom: 25px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+.content-container {
+    padding-bottom: 50px;
+}
+
+.data-table-container {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.filter-title-container {
+    padding-left: 50px;    /* Adjust this value as needed */
+
+}
+
+/*Front Page*/
+
+.developers-emails {
+    display: flex;
+    justify-content: space-between;
+}
+
+.developer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.developer span {
+    font-weight: bold;
+    font-size: 18px;
+}

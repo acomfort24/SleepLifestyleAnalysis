@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Quality by Location and Gender</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <style>
+        section {
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        #locLabel {
+            padding-left: 50px;
+        }
+
+        .content-container {
+            padding-bottom: 50px;
+        }
+
+        .data-table-container {
+            padding-left: 150px;
+            padding-right: 150px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        h1 {
+            margin-top: 30px;
+            padding-left: 150px;
+        }
+
+        th {
+            position: relative;
+        }
+
+        .tooltip-icon:hover + .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .tooltip-icon {
+            display: inline-block;
+            margin-left: 5px;
+            border: 1px solid #aaa;
+            padding: 2px;
+            border-radius: 50%;
+            font-size: 10px;
+            line-height: 14px;
+            text-align: center;
+            cursor: pointer;  /* Indicate to the user that this is an interactive element */
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            width: 250px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 10;  /* Increase if needed */
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        .sleep-health-lifestyle-dataset {
+            padding-left: 150px;
+        }
+    </style>
+</head>
+<body>
+<div class="content-container">
+    <!-- Menu Bar Start -->
+    <nav>
+        <ul>
+            <li><a href="/front-page">Front Page</a></li>
+            <li><a href="/gender-stress-blood-pressure-analysis">Stress and Blood Pressure Analysis</a></li>
+            <li><a href="/physical-activity-impact-sleep-quality">Physical Activity Impact on Sleep Quality</a></li>
+            <li><a href="/sleep-disorders-by-occupation-gender">Sleep Disorders by Occupation</a></li>
+            <li><a href="/sleep-quality-by-location-gender">Sleep Quality by Location</a></li>
+        </ul>
+    </nav>
+
+    <h1>Sleep Quality by Department Location and Gender</h1>
+
+    <!-- Summary Start -->
+    <section>
+        <h2>PURPOSE</h2>
+        <p>
+            Evaluate the sleep quality of people living in or around certain cities based on gender.
+        </p>
+        <h2>OVERVIEW</h2>
+        <p>
+            Key observations include:
+        <ul>
+            <li>Slight sleep quality variations observed between genders in the studied cities.</li>
+                <ul>
+                    <li>Seattle: Males have slightly higher sleep quality average than females.</li>
+                    <li>Dallas: Females exhibit higher sleep quality than males.</li>
+                </ul>
+        <li>Comparative data to understand regional sleep patterns and gender influence in urban environments.</li>
+    </ul>
+        <p>The analysis examines sleep quality based on gender in Seattle, Dallas, Miami, and Boston. Variations in
+            sleep quality between genders are observed, with Seattle showing higher sleep quality among males and
+            Dallas displaying higher sleep quality among females. This data aids in understanding sleep patterns and
+            gender influences across different cities.</p>
+    </section>
+
+    <!-- Gender Filter -->
+    <section>
+        <label for="genderFilter">Gender:</label>
+        <select id="genderFilter">
+            <option id="both" value="both">Both</option>
+            <option id="male" value="male">Male</option>
+            <option id="female" value="female">Female</option>
+        </select>
+        <!-- Occupation Filter -->
+        <label id="locLabel" for="locationFilter">Department Location:</label>
+        <select id="locationFilter">
+            <option value="">All</option>
+            <option th:each="location : ${locations}" th:value="${location}" th:text="${location}"></option>
+        </select>
+
+        <button onclick="filterData()">Filter</button>
+    </section>
+
+
+    <!-- Data table inside a container for padding -->
+    <div class="data-table-container">
+        <table border="1">
+            <thead>
+            <tr>
+                <th>
+                    Gender
+                    <span class="tooltip-icon">?</span>
+                    <span class="tooltip-text">The gender of the person.</span>
+                </th>
+                <th>
+                    Department Location
+                    <span class="tooltip-icon">?</span>
+                    <span class="tooltip-text">Location of the department performing analysis.</span>
+                </th>
+                <th>
+                    Average Sleep Quality
+                    <span class="tooltip-icon">?</span>
+                    <span class="tooltip-text">Average of a subjective rating of the quality of sleep, ranging from 1 to 10. </span>
+                </th>
+            </tr>
+            </thead>
+            <tbody th:if="${data != null}">
+            <tr th:each="item : ${data}">
+                <td th:text="${item[0]}"></td> <!-- Gender -->
+                <td th:text="${item[1]}"></td> <!-- Dept_Location -->
+                <td th:text="${item[2]}"></td> <!-- Avg Sleep Quality -->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p class="sleep-health-lifestyle-dataset">
+        Source: <a href="https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset" target="_blank">Sleep Health and Lifestyle Dataset</a>
+    </p>
+
+
+    <!-- Javascript -- Filter  -->
+    <script>
+        function filterData() {
+            const selectedGender = document.getElementById('genderFilter').value;
+            const selectedLocation = document.getElementById('locationFilter').value;
+            const baseUrl = "/sleep-quality-by-location-gender";
+            let queryString = "?";
+
+            if (selectedGender) {
+                queryString += "gender=" + selectedGender;
+            }
+            if (selectedLocation) {
+                queryString += (queryString !== "?" ? "&" : "") + "location=" + selectedLocation;
+            }
+
+            // Redirect to the constructed URL
+            window.location.href = baseUrl + queryString;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            setDropdownBasedOnUrl();
+        });
+
+        function setDropdownBasedOnUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const genderParam = params.get('gender');
+            const locationParam = params.get('location');
+
+            // Set the gender dropdown to the value from the URL
+            if (genderParam) {
+                const genderDropdown = document.getElementById('genderFilter');
+                for (let i = 0; i < genderDropdown.options.length; i++) {
+                    if (genderDropdown.options[i].value === genderParam) {
+                        genderDropdown.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            // Set the location dropdown to the value from the URL
+            if (locationParam) {
+                const locationDropdown = document.getElementById('locationFilter');
+                for (let i = 0; i < locationDropdown.options.length; i++) {
+                    if (locationDropdown.options[i].value === locationParam) {
+                        locationDropdown.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+        }
+    </script>
+</div>
+</body>
+</html>

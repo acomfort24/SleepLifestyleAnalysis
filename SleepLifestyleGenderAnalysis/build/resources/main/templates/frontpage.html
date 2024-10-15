@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep, Health, and Gender Study</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <style>
+        .developer span {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        .developers-emails {
+            display: flex;
+            justify-content: space-between;
+        }
+        .developers-emails span {
+            margin-right: 15px;
+        }
+        h1 {
+            margin-top: 10px; /* Reduced margin-top from 50px to 10px */
+            margin-bottom: 10px; /* Added margin-bottom for space below the h1 */
+        }
+
+        header img {
+            margin-top: 20px; /* Reduced margin-top from 50px to 20px */
+            margin-bottom: 20px; /* Added margin-bottom for space below the image */
+        }
+    </style>
+</head>
+<body>
+
+<!-- MENU BAR START -->
+<nav>
+    <ul>
+        <li><a href="/front-page">Front Page</a></li>
+        <li><a href="/gender-stress-blood-pressure-analysis">Stress and Blood Pressure Analysis</a></li>
+        <li><a href="/physical-activity-impact-sleep-quality">Physical Activity Impact on Sleep Quality</a></li>
+        <li><a href="/sleep-disorders-by-occupation-gender">Sleep Disorders by Occupation</a></li>
+        <li><a href="/sleep-quality-by-location-gender">Sleep Quality by Location</a></li>
+    </ul>
+</nav>
+<!-- MENU BAR END -->
+
+<header>
+    <img th:src="@{/img/logo.png}" alt="Sleep Health Logo" class="explicit-size rounded-image"/>
+    <h1><strong>Sleep, Health, and Gender Study</strong></h1>
+</header>
+
+<section>
+    <div>
+        <h2>GOAL</h2>
+        <p>Our goal is to analyze the relationship among sleep health factors within a population, with a specific
+            focus on both the female and male genders. This analysis relies on the provided associations found in the
+            Sleep &amp; Health dataset. To achieve this, we will utilize the Sleep Health and Lifestyle dataset. Our
+            investigation will delve into how different variables such as blood pressure, stress levels, sleep
+            duration, physical activity levels, and location correlate with sleep quality, sleep disorders, and other
+            significant factors for each gender.</p>
+    </div>
+
+    <div>
+        <h2>PROJECT DESCRIPTION</h2>
+        <p>Our primary aim is to uncover patterns, similarities, and distinctions in the manner specific variables impact
+            the overall sleep health and well-being of each gender. By conducting an analysis of sleep disorders
+            categorized by occupation and gender, evaluating sleep quality relative to location and gender, studying
+            the influence of physical activity on sleep quality in relation to gender, as well as exploring stress and
+            blood pressure data, we intend to extract valuable insights regarding the potential effects of sleep on
+            various health parameters. These findings can subsequently be applied to formulate strategies that endorse
+            healthy sleep habits, identify at-risk communities within each gender, and potentially contribute to the
+            development of interventions or treatments targeting sleep-related health issues.</p>
+    </div>
+
+    <h2>MEET THE DEVELOPERS</h2>
+    <div class="developers-emails">
+        <div class="developer">
+            <span>Andy Comfort - acomfort@uw.edu</span>
+            <img src="/img/sleepy1.png" alt="Andy Comfort" width="100px" height="100px">
+        </div>
+        <div class="developer">
+            <span>Evan Chard - echard@uw.edu</span>
+            <img src="/img/sleepy3.png" alt="Evan Chard" width="120px" height="120px">
+        </div>
+        <div class="developer">
+            <span>Caroline El Jazmi - eljazmi@uw.edu</span>
+            <img src="/img/sleepy2.png" alt="Caroline El Jazmi" width="130px" height="130px">
+        </div>
+    </div>
+</section>
+</body>
+</html>
